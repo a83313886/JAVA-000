@@ -8,7 +8,8 @@ import org.springframework.context.support.GenericApplicationContext;
 
 public class XmlBasedApplication {
     public static void main(String[] args) {
-        method1();
+        // method1();
+        method2();
     }
 
     private static void method1() {

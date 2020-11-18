@@ -1,9 +1,8 @@
 package com.example.demo;
 
 import com.example.demo.domain.School;
-import org.springframework.beans.factory.groovy.GroovyBeanDefinitionReader;
-import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
-import org.springframework.context.support.GenericApplicationContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class MixStyleApplication {
 
@@ -12,10 +11,7 @@ public class MixStyleApplication {
     }
 
     public static void method1() {
-        GenericApplicationContext context = new GenericApplicationContext();
-        new GroovyBeanDefinitionReader(context).loadBeanDefinitions("config/daos.groovy");
-        new XmlBeanDefinitionReader(context).loadBeanDefinitions("config/services.xml");
-        context.refresh();
+        ApplicationContext context = new ClassPathXmlApplicationContext("config/enableAnnotationConfig.xml", "config/componentscan.xml");
         School school = context.getBean(School.class);
         System.out.println(school);
     }

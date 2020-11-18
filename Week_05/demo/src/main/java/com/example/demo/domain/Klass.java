@@ -1,25 +1,18 @@
 package com.example.demo.domain;
 
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Collection;
+import java.util.List;
 
-public class Klass {
-    private Collection<Student> students;
-
-    public Collection<Student> getStudents() {
-        return students;
-    }
+@Data
+public class Klass { 
 
     @Autowired
-    public void setStudents(Collection<Student> students) {
-        this.students = students;
+    List<Student> students;
+    
+    public void dong(){
+        System.out.println(this.getStudents());
     }
-
-    @Override
-    public String toString() {
-        return "Klass{" +
-                "students=" + students +
-                '}';
-    }
+    
 }

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.Collection;
+import java.util.List;
 
 public class JavaBasedApplication {
 
@@ -21,15 +21,14 @@ public class JavaBasedApplication {
     @Configuration
     public static class JavaBeanConfig {
         @Bean
-        public School school(Collection<Klass> klasses) {
+        public School school(Klass klasses) {
             School school = new School();
-            school.setName("ajshj");
-            school.setKlasses(klasses);
+            school.setClass1(klasses);
             return school;
         }
 
         @Bean
-        public Klass klass(Collection<Student> students) {
+        public Klass klass(List<Student> students) {
             Klass klass = new Klass();
             klass.setStudents(students);
             return klass;
@@ -39,6 +38,12 @@ public class JavaBasedApplication {
         public Student student() {
             Student student = new Student();
             student.setName("John");
+            return student;
+        }
+        @Bean
+        public Student student100() {
+            Student student = new Student();
+            student.setName("student100");
             return student;
         }
     }

@@ -1,35 +1,28 @@
 package com.example.demo.domain;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-public class Student {
+import java.io.Serializable;
 
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+
+public class Student implements Serializable {
+
+    private int id;
     private String name;
 
-    public String getName() {
-        return name;
+    public void init(){
+        System.out.println("hello...........");
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "name='" + name + '\'' +
-                '}';
-    }
-
-    @PostConstruct
-    public void postConstruct() {
-        System.out.println("PostConstruct on student");
-    }
-
-    @PreDestroy
-    public void preDestroy() {
-        System.out.println("PreDestroy on student");
-
+    public Student create(){
+        return new Student(101,"KK101");
     }
 }

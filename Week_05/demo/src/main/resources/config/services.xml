@@ -5,8 +5,7 @@
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="school" class="com.example.demo.domain.School">
-        <property name="name" value="Sam Paul"/>
-        <property name="klasses" ref="klass"/>
+        <property name="class1" ref="klass"/>
     </bean>
 
     <!-- more bean definitions go here -->

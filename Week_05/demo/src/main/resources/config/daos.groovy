@@ -1,3 +1,5 @@
+package config
+
 import com.example.demo.domain.Klass
 import com.example.demo.domain.Student
 

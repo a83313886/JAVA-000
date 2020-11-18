@@ -14,9 +14,11 @@
         <property name="name" value="Kevin"/>
     </bean>
 
-    <bean id="school" class="com.example.demo.domain.School">
-        <property name="name" value="berklin"/>
+    <bean name="student100" class="com.example.demo.domain.Student">
+        <property name="name" value="student100"/>
     </bean>
+
+    <bean id="school" class="com.example.demo.domain.School" />
 
     <!-- more bean definitions go here -->
 
