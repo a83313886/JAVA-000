@@ -1,0 +1,19 @@
+{
+  "groups": [
+    {
+      "name": "demo.javabean",
+      "type": "com.demo.configurer.JavaBeanConfigProperties",
+      "sourceType": "com.demo.configurer.JavaBeanConfigProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "demo.javabean.name",
+      "type": "java.lang.String",
+      "description": "学生的名称",
+      "sourceType": "com.demo.configurer.JavaBeanConfigProperties",
+      "defaultValue": "student101"
+    }
+  ],
+  "hints": []
+}
