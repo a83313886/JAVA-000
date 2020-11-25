@@ -1,9 +1,11 @@
 
+DROP table IF EXISTS `order`;
+
 create table `order`
 (
 	id bigint auto_increment,
 	place_time timestamp default current_timestamp not null comment '下单时间',
-	userId bigint not null comment '用户ID',
+	user_id bigint not null comment '用户ID',
 	`status` smallint(1) not null comment '订单状态 0-有效 1-取消',
 	`pay_status` smallint(1) not null comment '支付状态 0-未支付 1-已支付',
 	price int not null comment '订单总价格*1000',
@@ -18,7 +20,9 @@ create table `order`
 comment '订单表';
 
 create index order__index_1
-	on `order` (userId);
+	on `order` (user_id);
+	
+DROP table IF EXISTS `order_detail`;
 	
 create table order_detail
 (
@@ -40,6 +44,8 @@ comment '订单详情';
 create index order_detail__index_1
 	on order_detail (order_id);	
 
+DROP table IF EXISTS `user`;
+	
 create table `user`
 (
 	id bigint auto_increment,
@@ -57,6 +63,8 @@ create table `user`
 )
 comment '用户表';
 
+
+DROP table IF EXISTS `product`;
 create table product
 (
 	id bigint auto_increment,
