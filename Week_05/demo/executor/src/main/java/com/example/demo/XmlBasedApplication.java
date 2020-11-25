@@ -25,4 +25,10 @@ public class XmlBasedApplication {
         School school = context.getBean(School.class);
         System.out.println(school);
     }
+
+    private static void method3() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("config/components.xml");
+        School school = context.getBean(School.class);
+        System.out.println(school);
+    }
 }
