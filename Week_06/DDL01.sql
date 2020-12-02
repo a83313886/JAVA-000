@@ -16,8 +16,7 @@ create table `order`
 	is_deleted smallint(1) default 0 not null comment '是否被删除 0-否 1-是',
 	constraint order_pk
 		primary key (id)
-)
-comment '订单表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单表';
 
 create index order__index_1
 	on `order` (user_id);
@@ -39,7 +38,7 @@ create table order_detail
 	constraint order_detail_pk
 		primary key (id)
 )
-comment '订单详情';
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 comment '订单详情';
 
 create index order_detail__index_1
 	on order_detail (order_id);	
@@ -60,8 +59,7 @@ create table `user`
 	account varchar(30) not null comment '用户账号',
 	constraint user_pk
 		primary key (id)
-)
-comment '用户表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 comment '用户表';
 
 
 DROP table IF EXISTS `product`;
@@ -79,8 +77,7 @@ create table product
 	available_quality int not null comment '可用库存量',
 	constraint product_pk
 		primary key (id)
-)
-comment '商品表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 comment '商品表';
 
 
 
