@@ -5,6 +5,9 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.parser.ParserConfig;
 import io.kimmking.rpcfx.api.RpcfxRequest;
 import io.kimmking.rpcfx.api.RpcfxResponse;
+import net.bytebuddy.ByteBuddy;
+import net.bytebuddy.implementation.InvocationHandlerAdapter;
+import net.bytebuddy.matcher.ElementMatchers;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -23,9 +26,27 @@ public final class Rpcfx {
 
     public static <T> T create(final Class<T> serviceClass, final String url) {
 
-        // 0. 替换动态代理 -> AOP
-        return (T) Proxy.newProxyInstance(Rpcfx.class.getClassLoader(), new Class[]{serviceClass}, new RpcfxInvocationHandler(serviceClass, url));
+        return createByByteBuddy(serviceClass, url);
+        // 0. 替换动态代理 -> AOP / 字节码生成
+        /*return (T) Proxy.newProxyInstance(Rpcfx.class.getClassLoader(), new Class[]{serviceClass}, new RpcfxInvocationHandler(serviceClass, url));*/
 
+    }
+
+    public static <T> T createByByteBuddy(final Class<T> serviceClass, final String url) {
+        try {
+            return (T) new ByteBuddy().subclass(Object.class)
+                    .implement(serviceClass)
+                    .method(ElementMatchers.any())
+                    .intercept(InvocationHandlerAdapter.of(new RpcfxInvocationHandler(serviceClass, url)))
+                    .make()
+                    .load(Rpcfx.class.getClassLoader())
+                    .getLoaded()
+                    .getDeclaredConstructor()
+                    .newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static class RpcfxInvocationHandler implements InvocationHandler {
