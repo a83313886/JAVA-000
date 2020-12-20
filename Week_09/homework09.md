@@ -7,3 +7,6 @@
 ### 尝试使用Netty+HTTP作为client端传输方式
 见`RpcfxServerApplication`的`runWithNetty`方法，引入netty后，请求和响应中的JSON的序列化和反序列化需要自己处理，原来Spring Web会帮我们处理的。
 客户端不涉及变更
+
+## 作业二：结合dubbo+hmily，实现一个TCC外汇交易处理
+processing...
