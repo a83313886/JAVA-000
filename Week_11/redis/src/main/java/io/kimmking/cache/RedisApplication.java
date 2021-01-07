@@ -1,5 +1,6 @@
 package io.kimmking.cache;
 
+import io.kimmking.cache.sentinel.SentinelJedis;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import redis.clients.jedis.Jedis;
 
@@ -15,7 +16,7 @@ public class RedisApplication {
 		System.out.println(jedis.get("uptime"));
 
 		// C2.基于sentinel和连接池的demo
-//		Jedis sjedis = SentinelJedis.getJedis();
+		Jedis sjedis = SentinelJedis.getJedis();
 //		System.out.println(sjedis.info());
 //		sjedis.set("uptime2", new Long(System.currentTimeMillis()).toString());
 //		System.out.println(sjedis.get("uptime2"));
@@ -58,6 +59,10 @@ public class RedisApplication {
 //		ClusterJedis.close();
 
 		//SpringApplication.run(RedisApplication.class, args);
+
+	}
+
+	public static void distributedLockWithRedis() {
 
 	}
 
