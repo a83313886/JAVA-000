@@ -16,7 +16,6 @@ import okhttp3.RequestBody;
 import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
 
 public final class Rpcfx {
 
@@ -75,7 +74,9 @@ public final class Rpcfx {
 
             // 这里判断response.status，处理异常
             // 考虑封装一个全局的RpcfxException
-
+            if (!response.isStatus()) {
+                throw response.getException();
+            }
             return JSON.parse(response.getResult().toString());
         }
 
